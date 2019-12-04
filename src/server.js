@@ -1,14 +1,12 @@
 import express from "express";
-import graphqlHTTP from "express-graphql";
-import { schema } from "./graphql";
+import {serviceMongo} from "./services";
+serviceMongo.connection();
+
 const app = express();
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    graphiql: true
-  })
-);
+// app.use(
+//   "/graphql",
+//   })
+// );
 app.get("/", (req, res) => {
   res.send("todo listo");
 });
