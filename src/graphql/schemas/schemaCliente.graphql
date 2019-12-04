@@ -1,0 +1,34 @@
+type Cliente {
+  id: ID
+  nombre: String
+  apellido: String
+  empresa: String
+  emails: [Email]
+  edad: Int
+  tipo: TipoCliente
+  pedidos: [Pedido]
+}
+
+type Query {
+  getClientes: [Cliente]
+  getCliente(input: Int): Cliente
+}
+
+enum TipoCliente {
+  BASICO
+  PREMIUM
+}
+
+input ClienteInput {
+  nombre: String!
+  apellido: String
+  empresa: String
+  emails: [EmailInput]
+  edad: Int
+  tipo: TipoCliente
+  pedidos: [PedidoInput]
+}
+
+type Mutation {
+  crearCliente(input: ClienteInput): Cliente
+}
