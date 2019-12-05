@@ -1,6 +1,0 @@
-type Email {
-  email: String
-}
-input EmailInput {
-  email: String
-}
