@@ -1,13 +1,13 @@
+import mongoose from "mongoose";
 import express from "express";
-import {serviceMongo} from "./services";
-serviceMongo.connection();
+import graphqlHTTP from "express-graphql";
+import { importSchema } from "graphql-import";
+import { makeExecutableSchema } from "graphql-tools";
+import { serviceMongo, serviceGql, serviceExpress } from "./services";
+import config from "./environment";
 
-const app = express();
-// app.use(
-//   "/graphql",
-//   })
-// );
-app.get("/", (req, res) => {
-  res.send("todo listo");
-});
-app.listen(3000, () => console.log("funcionando servidor nodemon"));
+const db = serviceMongo(config);
+db({ mongoose }).connection();
+const app = serviceExpress(express());
+app.use("/graphql", serviceGql(graphqlHTTP).endPoint());
+app.listen(config);

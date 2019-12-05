@@ -1,4 +1,8 @@
-// import graphqlHTTP from "express-graphql";
-//   graphqlHTTP({
-//     schema,
-//     graphiql: true
+module.exports = graphqlHTTP => ({
+  endPoint: (schema, graphiql) => {
+    return graphqlHTTP({
+      schema,
+      graphiql: graphiql
+    });
+  }
+});
